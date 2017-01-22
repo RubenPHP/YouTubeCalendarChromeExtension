@@ -1,0 +1,40 @@
+{
+  "name": "YouTube Scheduled Videos Calendar Extension",
+  "version": "0.0.1",
+  "manifest_version": 2,
+  "description": "Show your scheduled videos on a nice calendar.",
+  "homepage_url": "https://github.com/RubenPHP/YouTubeCalendarChromeExtension",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "default_locale": "en",
+  "background": {
+    "page": "src/bg/background.html",
+    "persistent": false
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.youtube.com/my_videos*"
+      ],
+      "css": [
+        "src/inject/inject.css"
+      ]
+    },
+    {
+      "matches": [
+        "https://www.youtube.com/my_videos*"
+      ],
+      "js": [
+        "js/jquery/jquery.js",
+        "js/jquery.leanModal.min.js",
+        "js/underscore.js",
+        "js/moment.js",
+        "js/clndr.js",
+        "src/inject/inject.js"
+      ]
+    }
+  ]
+}
