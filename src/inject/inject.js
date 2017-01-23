@@ -22,13 +22,19 @@ chrome.extension.sendMessage({}, function(response) {
 });
 
 function createEventArray() {
-
 	var eventArray = $('#vm-playlist-video-list-ol .vm-scheduled-date').map(function() {
+		var videoItem = $(this).parent().parent().parent().parent().parent();
+		var date = new Date($(this).data('timestamp') * 1000);
+		var amPm = (date.getHours() >= 12) ? "PM" : "AM";
 
-		return {
-			date: new Date($(this).data('timestamp') * 1000).toISOString(),
-			title: 'temporal'
+		var event = {
+			date: date.toISOString(),
+			time: addZero(date.getHours()) + ':' + addZero(date.getMinutes()) + ' ' + amPm,
+			videoId: $(videoItem).attr('id'),
+			title: $(videoItem).find('.vm-video-title-container a').html()
 		};
+
+		return event;
 	}).get();
 
 	return eventArray;
@@ -44,9 +50,6 @@ function generateScheduledVideoCalendar(eventArray) {
 		// clndr will respect whatever moment's language is set to.
 		// moment.locale('ru');
 
-		// Here's some magic to make sure the dates are happening this month.
-		var thisMonth = moment().format('YYYY-MM');
-
 		// The order of the click handlers is predictable. Direct click action
 		// callbacks come first: click, nextMonth, previousMonth, nextYear,
 		// previousYear, nextInterval, previousInterval, or today. Then
@@ -55,6 +58,7 @@ function generateScheduledVideoCalendar(eventArray) {
 		calendars.clndr1 = $('#yt-scheduled-videos-calendar').clndr({
 			weekOffset: 1,
 			//daysOfTheWeek: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
+			template: getCalendarTemplate(),
 			events: eventArray,
 			clickEvents: {
 				click: function (target) {
@@ -96,7 +100,7 @@ function generateScheduledVideoCalendar(eventArray) {
 				endDate: 'endDate',
 				startDate: 'startDate'
 			},
-			showAdjacentMonths: true,
+			showAdjacentMonths: false,
 			adjacentDaysChangeMonth: false
 		});
 
@@ -117,4 +121,50 @@ function generateScheduledVideoCalendar(eventArray) {
 			}
 		});
 	});
+}
+
+function getCalendarTemplate() {
+	var template =
+		"<div class='clndr-controls'>" +
+			"<div class='clndr-control-button'>" +
+				"<span class='clndr-previous-button'>previous</span>" +
+			"</div>" +
+			"<div class='month'><%= month %> <%= year %></div>" +
+			"<div class='clndr-control-button rightalign'>" +
+				"<span class='clndr-next-button'>next</span>" +
+			"</div>" +
+		"</div>" +
+		"<table class='clndr-table' border='0' cellspacing='0' cellpadding='0'>" +
+			"<thead>" +
+				"<tr class='header-days'>" +
+					"<% for(var i = 0; i < daysOfTheWeek.length; i++) { %>" +
+						"<td class='header-day'><%= daysOfTheWeek[i] %></td>" +
+					"<% } %>" +
+				"</tr>" +
+			"</thead>" +
+		"<tbody>" +
+			"<% for(var i = 0; i < numberOfRows; i++){ %>" +
+				"<tr>" +
+					"<% for(var j = 0; j < 7; j++){ %>" +
+						"<% var d = j + i * 7; %>" +
+						"<td class='<%= days[d].classes %>'>" +
+							"<div class='day-contents'><%= days[d].day %></div>" +
+							"<% for(var k = 0; k < days[d].events.length; k++) { %>" +
+								"<div class='day-event'><span class='time'><%= days[d].events[k].time %></span> <%= days[d].events[k].title %></div>" +
+							"<% } %>" +
+						"</td>" +
+					"<% } %>" +
+				"</tr>" +
+			"<% } %>" +
+		"</tbody>" +
+		"</table>";
+
+	return template;
+}
+
+function addZero(i) {
+	if (i < 10) {
+		i = "0" + i;
+	}
+	return i;
 }

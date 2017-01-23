@@ -18,7 +18,7 @@
 }
 #yt-scheduled-videos-calendar {
     margin: 30px auto;
-    max-width: 600px;
+    max-width: 900px;
     font-family: 'Droid Sans Mono';
     font-size: 14px;
 }
@@ -121,10 +121,24 @@
 #yt-scheduled-videos-calendar .clndr .clndr-table tr .day.my-today:hover {
     background: #72c6d8;
 }
-#yt-scheduled-videos-calendar .clndr .clndr-table tr .day.today.event,
-#yt-scheduled-videos-calendar .clndr .clndr-table tr .day.my-today.event {
-    background: #a7dbc1;
+#yt-scheduled-videos-calendar .clndr .clndr-table tr .day.today.event .day-contents,
+#yt-scheduled-videos-calendar .clndr .clndr-table tr .day.my-today.event .day-contents {
+    font-weight: bolder;
+    color: #00f;
 }
+#yt-scheduled-videos-calendar .clndr .clndr-table tr .day-event,
+#yt-scheduled-videos-calendar .clndr .clndr-table tr .day-event {
+    padding: 0 4px;
+    font-size: smaller;
+    font-family: sans-serif;
+}
+#yt-scheduled-videos-calendar .clndr .clndr-table tr .day-event span.time,
+#yt-scheduled-videos-calendar .clndr .clndr-table tr .day-event span.time {
+    color: #666;
+    font-weight: 800;
+}
+
+
 #yt-scheduled-videos-calendar .clndr .clndr-table tr .day.event,
 #yt-scheduled-videos-calendar .clndr .clndr-table tr .day.my-event {
     background: #B4E09F;
