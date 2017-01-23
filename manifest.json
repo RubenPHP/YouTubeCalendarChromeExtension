@@ -20,12 +20,8 @@
         "https://www.youtube.com/my_videos*"
       ],
       "css": [
+        "css/fontello.css",
         "src/inject/inject.css"
-      ]
-    },
-    {
-      "matches": [
-        "https://www.youtube.com/my_videos*"
       ],
       "js": [
         "js/jquery/jquery.js",
@@ -36,5 +32,12 @@
         "src/inject/inject.js"
       ]
     }
+  ],
+  "web_accessible_resources": [
+    "css/font/fontello.eot",
+    "css/font/fontello.svg",
+    "css/font/fontello.ttf",
+    "css/font/fontello.woff",
+    "css/font/fontello.woff2"
   ]
 }

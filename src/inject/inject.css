@@ -115,14 +115,14 @@
 }
 #yt-scheduled-videos-calendar .clndr .clndr-table tr .day.today,
 #yt-scheduled-videos-calendar .clndr .clndr-table tr .day.my-today {
-    background: #9AD6E3;
+    background: #B4E09F;
 }
 #yt-scheduled-videos-calendar .clndr .clndr-table tr .day.today:hover,
 #yt-scheduled-videos-calendar .clndr .clndr-table tr .day.my-today:hover {
-    background: #72c6d8;
+    background: #96d478;
 }
-#yt-scheduled-videos-calendar .clndr .clndr-table tr .day.today.event .day-contents,
-#yt-scheduled-videos-calendar .clndr .clndr-table tr .day.my-today.event .day-contents {
+#yt-scheduled-videos-calendar .clndr .clndr-table tr .day.today .day-contents,
+#yt-scheduled-videos-calendar .clndr .clndr-table tr .day.my-today .day-contents {
     font-weight: bolder;
     color: #00f;
 }
@@ -134,11 +134,9 @@
 }
 #yt-scheduled-videos-calendar .clndr .clndr-table tr .day-event span.time,
 #yt-scheduled-videos-calendar .clndr .clndr-table tr .day-event span.time {
-    color: #666;
+    color: black;
     font-weight: 800;
 }
-
-
 #yt-scheduled-videos-calendar .clndr .clndr-table tr .day.event,
 #yt-scheduled-videos-calendar .clndr .clndr-table tr .day.my-event {
     background: #B4E09F;

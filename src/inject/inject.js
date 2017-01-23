@@ -1,6 +1,6 @@
 chrome.extension.sendMessage({}, function(response) {
 	$('<div id="yt-scheduled-videos-calendar"></div>').insertAfter('#body-container');
-	$('<a id="launch-calendar-link" href="#yt-scheduled-videos-calendar">Calendar</a>').insertBefore('#vm-view-filter');
+	$('<a id="launch-calendar-link" href="#yt-scheduled-videos-calendar"><span class="icon-calendar">Calendar</span></a>').insertBefore('#vm-view-filter-label');
 	$('#launch-calendar-link').leanModal();
 
 	var readyStateCheckInterval = setInterval(function() {
