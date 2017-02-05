@@ -22,7 +22,7 @@ chrome.extension.sendMessage({}, function(response) {
 });
 
 function createEventArray() {
-	var eventArray = $('#vm-playlist-video-list-ol .vm-scheduled-date').map(function() {
+	var scheduledVideos = $('#vm-playlist-video-list-ol .vm-scheduled-date').map(function() {
 		var videoItem = $(this).parent().parent().parent().parent().parent();
 		var date = new Date($(this).data('timestamp') * 1000);
 		var amPm = (date.getHours() >= 12) ? "PM" : "AM";
@@ -31,11 +31,42 @@ function createEventArray() {
 			date: date.toISOString(),
 			time: addZero(date.getHours()) + ':' + addZero(date.getMinutes()) + ' ' + amPm,
 			videoId: $(videoItem).attr('id'),
-			title: $(videoItem).find('.vm-video-title-container a').html()
+			title: $(videoItem).find('.vm-video-title-container a').html(),
+			type: 'scheduled'
 		};
 
 		return event;
 	}).get();
+
+	var notScheduledVideos = $('#vm-playlist-video-list-ol > li').not(':has(".vm-scheduled-date")').map(function() {
+		debugger;
+		var videoItem = $(this);
+		var hasDate = $(this).find('.localized-date').length > 0;
+		if ( ! hasDate) {
+			return null;
+		}
+
+		var scheduledPublishedDate = $(this).find('.vm-schduled-date-published-label + .localized-date');
+		var definitiveDate = scheduledPublishedDate.length > 0 ? scheduledPublishedDate : $(this).find('.localized-date');
+
+		var date = new Date(definitiveDate.data('timestamp') * 1000);
+
+		var amPm = (date.getHours() >= 12) ? "PM" : "AM";
+
+		var numberOfViews = ($(this).find('.vm-video-side-view-count').text()).trim();
+
+		var event = {
+			date: date.toISOString(),
+			time: addZero(date.getHours()) + ':' + addZero(date.getMinutes()) + ' ' + amPm,
+			videoId: $(videoItem).attr('id'),
+			title: '(' + numberOfViews + ') ' + $(videoItem).find('.vm-video-title-container a').html(),
+			type: 'not-scheduled'
+		};
+
+		return event;
+	}).get();
+
+	var eventArray = scheduledVideos.concat(notScheduledVideos);
 
 	return eventArray;
 }

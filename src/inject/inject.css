@@ -110,17 +110,34 @@
     width: 100%;
     height: inherit;
 }
-#yt-scheduled-videos-calendar .clndr .clndr-table tr .day:hover {
-    background: #eee;
-}
 #yt-scheduled-videos-calendar .clndr .clndr-table tr .day.today,
 #yt-scheduled-videos-calendar .clndr .clndr-table tr .day.my-today {
     background: #B4E09F;
 }
+
 #yt-scheduled-videos-calendar .clndr .clndr-table tr .day.today:hover,
 #yt-scheduled-videos-calendar .clndr .clndr-table tr .day.my-today:hover {
     background: #96d478;
 }
+
+#yt-scheduled-videos-calendar .clndr .clndr-table tr .day.event,
+#yt-scheduled-videos-calendar .clndr .clndr-table tr .day.my-event {
+    background: #B4E09F;
+}
+#yt-scheduled-videos-calendar .clndr .clndr-table tr .day.event:hover,
+#yt-scheduled-videos-calendar .clndr .clndr-table tr .day.my-event:hover {
+    background: #96d478;
+}
+
+#yt-scheduled-videos-calendar .clndr .clndr-table tr .day.past {
+    background: white;
+}
+
+#yt-scheduled-videos-calendar .clndr .clndr-table tr .day:hover,
+#yt-scheduled-videos-calendar .clndr .clndr-table tr .day.past:hover {
+    background: #eee;
+}
+
 #yt-scheduled-videos-calendar .clndr .clndr-table tr .day.today .day-contents,
 #yt-scheduled-videos-calendar .clndr .clndr-table tr .day.my-today .day-contents {
     font-weight: bolder;
@@ -136,14 +153,6 @@
 #yt-scheduled-videos-calendar .clndr .clndr-table tr .day-event span.time {
     color: black;
     font-weight: 800;
-}
-#yt-scheduled-videos-calendar .clndr .clndr-table tr .day.event,
-#yt-scheduled-videos-calendar .clndr .clndr-table tr .day.my-event {
-    background: #B4E09F;
-}
-#yt-scheduled-videos-calendar .clndr .clndr-table tr .day.event:hover,
-#yt-scheduled-videos-calendar .clndr .clndr-table tr .day.my-event:hover {
-    background: #96d478;
 }
 #yt-scheduled-videos-calendar .clndr .clndr-table tr .day.inactive,
 #yt-scheduled-videos-calendar .clndr .clndr-table tr .day.my-inactive {
